@@ -94,7 +94,7 @@ class YoutubeBackground extends React.Component {
 			host: this.props.nocookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com'
 		};
 
-
+		if (typeof window !== "undefined") return <span />
 		return (
 			<div style={style} ref={c => this.container = c} className={[styles.container, className].join(' ')}>
 				<div>{children}</div>
