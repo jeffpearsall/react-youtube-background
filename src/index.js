@@ -27,15 +27,19 @@ class YoutubeBackground extends React.Component {
 		}
 	}
 
-	
+
 
 	componentDidMount() {
 		this.updateDimensions();
-		window.addEventListener("resize", this.updateDimensions.bind(this))
+		if (typeof window !== "undefined") {
+		  window.addEventListener("resize", this.updateDimensions.bind(this))
+		}
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("resize", this.updateDimensions.bind(this))
+		if (typeof window !== "undefined") {
+		  window.removeEventListener("resize", this.updateDimensions.bind(this))
+		}
 	}
 
 	updateDimensions() {
@@ -79,7 +83,7 @@ class YoutubeBackground extends React.Component {
 	render() {
 		const { videoHeight, videoWidth, videoX, videoY } = this.state
 		const { style, children, className, overlay, playerOptions } = this.props
-		const playerProps = (({ videoId,  onPlay, onPause, onError, onStateChange, onPlaybackRateChange, onPlaybackQualityChange}) => 
+		const playerProps = (({ videoId,  onPlay, onPause, onError, onStateChange, onPlaybackRateChange, onPlaybackQualityChange}) =>
 			({ videoId,  onPlay, onPause, onError, onStateChange, onPlaybackRateChange, onPlaybackQualityChange }))(this.props);
 
 		const videoOptions = {
